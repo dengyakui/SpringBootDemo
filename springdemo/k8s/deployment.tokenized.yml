@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
         - name: spring-boot-deployment
-          image: dengyakui/spring-boot-docker:latest
+          image: dengyakui/spring-boot-docker:#{Build.BuildId}#
           ports:
             - containerPort: 9090
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
       restartPolicy: Always
   selector:
     matchLabels:

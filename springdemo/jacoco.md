@@ -6,18 +6,23 @@ java -javaagent:jacocoagent.jar=includes=*,output=tcpserver,address=*,port=6300,
 
 # dump
 ```bash
-java -jar jacococli.jar dump --address localhost --destfile jacoco4.exec  --port 6300
+java -jar jacococli.jar dump --address localhost --port 6300 --destfile D:\output\jacoco-master-branch\round2\jacoco.exec
 ```
 
 # report
 ```bash
-java -jar jacococli.jar report jacoco3.exec --classfiles target/classes --csv jacoco3.csv --html jacoco-html-report3 --name quintos --sourcefiles src/ --xml jacoco3.xml
+java -jar jacococli.jar report D:\output\jacoco-master-branch\round2\jacoco.exec --classfiles D:\output\jacoco-master-branch\round2\classes --csv D:\output\jacoco-master-branch\round2\jacoco.csv --html D:\output\jacoco-master-branch\round2\jacoco-html-report --name quintos --sourcefiles D:\output\jacoco-master-branch\round2\springdemo\src --xml D:\output\jacoco-master-branch\round2\jacoco.xml
 ```
 
 # merge
 ```bash
-#java -jar jacococli.jar merge jacoco3.exec jacoco4.exec --destfile jacoco-merge.exec
-java -jar jacococli.jar report jacoco-merge.exec --classfiles target/classes --csv jacoco-merge.csv --html jacoco-html-report-merge --name jaococ-merge --sourcefiles src/ --xml jacoco-merge.xml
+#java -jar jacococli.jar merge D:\output\jacoco-master-branch\round1\jacoco.exec D:\output\jacoco-master-branch\round2\jacoco.exec --destfile D:\output\jacoco-master-branch\roundmerge\jacoco-merge.exec
+java -jar jacococli.jar report D:\output\jacoco-master-branch\roundmerge\jacoco-merge.exec --html D:\output\jacoco-master-branch\roundmerge\jacoco-html-report-merge --name jaococ-merge --classfiles D:/output/jacoco-master-branch/round1/classes/
+```
+
+# report by multi exec files
+```bash
+java -jar jacococli.jar report D:\output\jacoco-master-branch\round1\jacoco.exec D:\output\jacoco-master-branch\round2\jacoco.exec --html D:\output\jacoco-master-branch\roundmerge\jacoco-html-report-merge --name jaococ-merge --classfiles D:/output/jacoco-master-branch/round2/classes/
 ```
 
 
