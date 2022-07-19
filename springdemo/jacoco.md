@@ -6,7 +6,7 @@ java -javaagent:jacocoagent.jar=includes=*,output=tcpserver,address=*,port=6300,
 
 # dump
 ```bash
-java -jar jacococli.jar dump --address localhost --port 6300 --destfile D:\output\jacoco-master-branch\round2\jacoco.exec
+java -jar jacococli.jar dump --address localhost --port 6300 --destfile jacoco.exec
 ```
 
 # report
