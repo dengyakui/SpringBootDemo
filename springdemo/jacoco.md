@@ -11,7 +11,7 @@ java -jar jacococli.jar dump --address localhost --port 6300 --destfile jacoco.e
 
 # report
 ```bash
-java -jar jacococli.jar report D:\output\jacoco-master-branch\round2\jacoco.exec --classfiles D:\output\jacoco-master-branch\round2\classes --csv D:\output\jacoco-master-branch\round2\jacoco.csv --html D:\output\jacoco-master-branch\round2\jacoco-html-report --name quintos --sourcefiles D:\output\jacoco-master-branch\round2\springdemo\src --xml D:\output\jacoco-master-branch\round2\jacoco.xml
+java -jar jacococli.jar report jacoco.exec --classfiles target/classes  --html jacoco-html-report --name quintos
 ```
 
 # merge

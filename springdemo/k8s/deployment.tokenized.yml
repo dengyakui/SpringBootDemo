@@ -6,7 +6,7 @@ metadata:
   labels:
     app: spring-boot-deployment
 spec:
-  replicas: 2
+  replicas: 3
   template:
     metadata:
       name: spring-boot-deployment
@@ -15,11 +15,25 @@ spec:
     spec:
       containers:
         - name: spring-boot-deployment
-          image: dengyakui/spring-boot-docker:#{Build.BuildId}#
+          image: dengyakui/spring-boot-docker:778
           ports:
             - containerPort: 9090
           imagePullPolicy: Always
+          env:
+            - name: JACOCO_OPS
+              value: -javaagent:jacocoagent.jar=includes=*,output=tcpserver,address=*,port=6300,append=true
       restartPolicy: Always
   selector:
     matchLabels:
       app: spring-boot-deployment
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-docker
+spec:
+  selector:
+    app: spring-boot-deployment
+  ports:
+    - port: 9090
+  type: LoadBalancer
