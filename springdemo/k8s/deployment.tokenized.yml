@@ -15,13 +15,34 @@ spec:
     spec:
       containers:
         - name: spring-boot-deployment
-          image: dengyakui/spring-boot-docker:778
+          image: dengyakui/spring-boot-docker:780
           ports:
             - containerPort: 9090
           imagePullPolicy: Always
           env:
             - name: JACOCO_OPS
               value: -javaagent:jacocoagent.jar=includes=*,output=tcpserver,address=*,port=6300,append=true
+            - name: MY_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: MY_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: MY_POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: MY_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: MY_POD_SERVICE_ACCOUNT
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.serviceAccountName
+
       restartPolicy: Always
   selector:
     matchLabels:
@@ -31,6 +52,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: spring-boot-docker
+  namespace: spring-boot
 spec:
   selector:
     app: spring-boot-deployment
