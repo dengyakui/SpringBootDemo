@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: spring-boot-deployment
-          image: dengyakui/spring-boot-docker:780
+          image: dengyakui/spring-boot-docker:54
           ports:
             - containerPort: 9090
           imagePullPolicy: Always
@@ -42,7 +42,13 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.serviceAccountName
-
+          volumeMounts:
+            - mountPath: "/mnt/blob"
+              name: volume
+      volumes:
+        - name: volume
+          persistentVolumeClaim:
+            claimName: pvc-azurefile
       restartPolicy: Always
   selector:
     matchLabels:
